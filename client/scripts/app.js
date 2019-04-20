@@ -14,15 +14,28 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-    // App.fetch(MessagesView.renderMessage);
+
+    //on change function <select onchange="filterRoom()">
+    //1. empty all the messages
+    //2. load messages with matching roomname
+    //loop through current data
+    //render the objects with matching roomname
+    //get specified roomname by document.getElementById('roomname').text and match to every single roomname
+
+
 
   },
 
   fetch: function (callback = () => { }) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data)
+      //console.log(data)
+      for (var i = 0; i < data.results.length; i++) {
+        Messages.push(data.results[i]);
+      }
       MessagesView.renderMessage(data);
+      RoomsView.renderRoom(data);
+      // console.log(Messages);
       callback();
     });
   },

@@ -1,3 +1,1 @@
-var Messages = {
-
-};
+var Messages = [];
